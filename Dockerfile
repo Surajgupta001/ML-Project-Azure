@@ -8,9 +8,10 @@ WORKDIR /app
 COPY . /app
 
 # Install system dependencies
-RUN apt update -y
+RUN apt update -y && apt-get update && pip install -r requirements.txt
 
-RUN apt-get update && pip install -r requirements.txt
+# Retrain the model inside the container to guarantee 100% pickle and scikit-learn compatibility
+RUN python3 src/components/data_ingestion.py
 
 # Run the application
 CMD ["python3", "app.py"]
