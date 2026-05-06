@@ -11,7 +11,7 @@ venv/
 myenv/
 .vscode/
 .idea/
-artifacts/
+# artifacts/
 logs/
 catboost_info/
 notebook/
