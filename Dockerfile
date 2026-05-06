@@ -11,7 +11,8 @@ COPY . /app
 RUN apt update -y && apt-get update && pip install -r requirements.txt
 
 # Retrain the model inside the container to guarantee 100% pickle and scikit-learn compatibility
-RUN python3 src/components/data_ingestion.py
+ENV PYTHONPATH=/app
+RUN python3 -m src.components.data_ingestion
 
 # Run the application
 CMD ["python3", "app.py"]
